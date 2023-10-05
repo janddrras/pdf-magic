@@ -1,0 +1,19 @@
+[
+  {
+    "id": 1,
+    "title": "Sign up for an account",
+    "content": "Either starting out with a free plan or choose our",
+    "link": "pro plan",
+    "href": "/pricing"
+  },
+  {
+    "id": 2,
+    "title": "Upload your PDF file",
+    "content": "We'll process your file and make it ready for you to chat with."
+  },
+  {
+    "id": 3,
+    "title": "Start asking questions",
+    "content": "It's that simple. Try out Quill today - it really takes less than a minute."
+  }
+]
