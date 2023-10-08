@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils"
 import "./globals.css"
+import "react-loading-skeleton/dist/skeleton.css"
+
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import Navbar from "@/components/landingPage/Navbar"
@@ -17,9 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className="light">
       <body className={cn("min-h-screen font-sans antialiased grainy", inter.className)}>
         <Navbar />
-        <main>
-          <Providers>{children}</Providers>
-        </main>
+        <Providers>{children}</Providers>
       </body>
     </html>
   )
