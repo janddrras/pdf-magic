@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Dialog, DialogContent } from "../ui/dialog"
 import { DialogTrigger } from "@radix-ui/react-dialog"
 import { Button } from "../ui/button"
+import UploadDropzone from "./UploadDropzone"
 
 interface UploadButtonProps {}
 
@@ -20,7 +21,9 @@ const UploadButton = ({}: UploadButtonProps) => {
         <Button>Upload PDF</Button>
       </DialogTrigger>
 
-      <DialogContent>examle</DialogContent>
+      <DialogContent>
+        <UploadDropzone />
+      </DialogContent>
     </Dialog>
   )
 }
