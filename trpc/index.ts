@@ -1,14 +1,13 @@
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 import { privateProcedure, publicProcedure, router } from "./trpc"
 import { TRPCError } from "@trpc/server"
 import { db } from "@/db"
 import { z } from "zod"
+import useAuth from "@/hooks/useAuth"
 
 export const appRouter = router({
   // Updating the user in database
   authCallback: publicProcedure.query(async () => {
-    const { getUser } = getKindeServerSession()
-    const user = getUser()
+    const user = useAuth()
 
     if (!user.id || !user.email) throw new TRPCError({ code: "UNAUTHORIZED" })
 
@@ -25,12 +24,28 @@ export const appRouter = router({
 
     return { success: true }
   }),
+
   // Fetch all files for the current user
   getUserFiles: privateProcedure.query(async ({ ctx }) => {
     const files = await db.file.findMany({ where: { userId: { equals: ctx.userId } } })
 
     return files
   }),
+
+  // Get file upload status
+  getFileUploadStatus: privateProcedure.input(z.object({ fileId: z.string() })).query(async ({ input, ctx }) => {
+    const file = await db.file.findFirst({
+      where: {
+        id: input.fileId,
+        userId: ctx.userId
+      }
+    })
+
+    if (!file) return { status: "PENDING" as const }
+
+    return { status: file.status }
+  }),
+
   // Get file
   getFile: privateProcedure.input(z.object({ key: z.string() })).mutation(async ({ ctx, input }) => {
     const { userId } = ctx
@@ -40,6 +55,7 @@ export const appRouter = router({
 
     return file
   }),
+
   // Delete file by id
   deleteFile: privateProcedure.input(z.object({ id: z.string() })).mutation(async ({ ctx, input }) => {
     const { userId } = ctx

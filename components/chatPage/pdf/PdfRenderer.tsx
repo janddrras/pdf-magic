@@ -9,7 +9,7 @@ import "simplebar-react/dist/simplebar.min.css"
 import { useResizeDetector } from "react-resize-detector"
 import { Loader2 } from "lucide-react"
 
-import { toast } from "../ui/use-toast"
+import { toast } from "../../ui/use-toast"
 import TopBar from "./TopBar"
 import { cn } from "@/lib/utils"
 

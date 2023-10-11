@@ -1,11 +1,11 @@
 import { ChevronDown, ChevronUp, RotateCw, Search } from "lucide-react"
-import { Button } from "../ui/button"
-import { Input } from "../ui/input"
+import { Button } from "../../ui/button"
+import { Input } from "../../ui/input"
 import { cn } from "@/lib/utils"
 import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "../ui/dropdown-menu"
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "../../ui/dropdown-menu"
 import PdfFullscreen from "./PdfFullscreen"
 
 interface TopBarProps {

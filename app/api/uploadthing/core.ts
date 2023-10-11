@@ -1,5 +1,5 @@
 import { db } from "@/db"
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
+import useAuth from "@/hooks/useAuth"
 import { createUploadthing, type FileRouter } from "uploadthing/next"
 
 const f = createUploadthing()
@@ -7,8 +7,7 @@ const f = createUploadthing()
 export const ourFileRouter = {
   pdfUploader: f({ pdf: { maxFileSize: "4MB" } })
     .middleware(async ({ req }) => {
-      const { getUser } = getKindeServerSession()
-      const user = getUser()
+      const user = useAuth()
       if (!user || !user.id) throw new Error("NOT_AUTHENTICATED")
 
       return { userId: user.id }

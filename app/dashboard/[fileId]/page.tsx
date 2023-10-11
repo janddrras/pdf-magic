@@ -1,7 +1,7 @@
-import ChatWrapper from "@/components/chatPage/ChatWrapper"
-import PdfRenderer from "@/components/chatPage/PdfRenderer"
+import ChatWrapper from "@/components/chatPage/chat/ChatWrapper"
+import PdfRenderer from "@/components/chatPage/pdf/PdfRenderer"
 import { db } from "@/db"
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
+import useAuth from "@/hooks/useAuth"
 import { notFound, redirect } from "next/navigation"
 
 interface ProductPageProps {
@@ -12,8 +12,8 @@ interface ProductPageProps {
 
 const ProductPage = async ({ params }: ProductPageProps) => {
   const { fileId } = params
-  const { getUser } = getKindeServerSession()
-  const user = getUser()
+
+  const user = useAuth()
   if (!user || !user.id) redirect(`/auth-callback?origin=/dashboard/${fileId}`)
 
   const file = await db.file.findUnique({ where: { id: fileId, userId: user.id } })
