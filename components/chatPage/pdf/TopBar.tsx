@@ -71,7 +71,7 @@ const TopBar = ({ numPages, currPage, setCurrPage, scale, setScale, setRotation,
           aria-label="Next page"
           variant="ghost"
           onClick={() => {
-            setCurrPage((prev: number) => (prev + 1 > 1 ? numPages! : prev + 1))
+            setCurrPage((prev: number) => (prev + 1 > numPages! ? numPages! : prev + 1))
             setValue("page", String(currPage + 1))
           }}
         >
