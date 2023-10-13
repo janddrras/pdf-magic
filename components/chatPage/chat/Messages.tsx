@@ -3,12 +3,19 @@ import { INFINITE_QUERY_LIMIT } from "@/config/infinite-query"
 import { Loader2, MessageSquare } from "lucide-react"
 import Skeleton from "react-loading-skeleton"
 import Message from "./Message"
+import { useContext, useEffect, useRef } from "react"
+import { ChatContext } from "./ChatContext"
+import { useIntersection } from "@mantine/hooks"
 
 interface MessagesProps {
   fileId: string
 }
 
 const Messages = ({ fileId }: MessagesProps) => {
+  const { isLoading: isAiThinking } = useContext(ChatContext)
+
+  const lastMessageRef = useRef<HTMLDivElement>(null)
+
   const { data, isLoading, fetchNextPage } = trpc.getFileMessages.useInfiniteQuery(
     { fileId, limit: INFINITE_QUERY_LIMIT },
     { getNextPageParam: (lastPage) => lastPage?.nextCursor, keepPreviousData: true }
@@ -26,7 +33,18 @@ const Messages = ({ fileId }: MessagesProps) => {
     createdAt: new Date().toISOString()
   }
 
-  const combinedMessages = [...(true ? [loadingMessage] : []), ...(messages ?? [])]
+  const combinedMessages = [...(isAiThinking ? [loadingMessage] : []), ...(messages ?? [])]
+
+  const { ref, entry } = useIntersection({
+    root: lastMessageRef.current,
+    threshold: 1
+  })
+
+  useEffect(() => {
+    if (entry?.isIntersecting) {
+      fetchNextPage()
+    }
+  }, [entry, fetchNextPage])
 
   return (
     <div className="flex max-h-[calc(100vh-3.5rem-7rem)] border-zinc-200 flex-1 flex-col-reverse gap-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
@@ -35,7 +53,7 @@ const Messages = ({ fileId }: MessagesProps) => {
           const isNextMessageSamePerson = combinedMessages[i - 1]?.isUserMessage === combinedMessages[i]?.isUserMessage
 
           if (i === combinedMessages.length - 1) {
-            return <Message message={message} isNextMessageSamePerson={isNextMessageSamePerson} key={message.id} />
+            return <Message message={message} isNextMessageSamePerson={isNextMessageSamePerson} key={message.id} ref={ref} />
           } else return <Message message={message} isNextMessageSamePerson={isNextMessageSamePerson} key={message.id} />
         })
       ) : isLoading ? (
