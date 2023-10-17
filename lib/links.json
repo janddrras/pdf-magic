@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Get started",
+    "link": "sign-up",
+    "isAuth": false
+  },
+  {
+    "id": 2,
+    "name": "Sign in",
+    "link": "sign-in",
+    "isAuth": false
+  },
+  {
+    "id": 3,
+    "name": "Pricing",
+    "link": "pricing",
+    "isAuth": false
+  },
+  {
+    "id": 4,
+    "name": "Dashboard",
+    "link": "dashboard",
+    "isAuth": true
+  },
+  {
+    "id": 5,
+    "name": "Sign out",
+    "link": "sign-out",
+    "isAuth": true
+  }
+]

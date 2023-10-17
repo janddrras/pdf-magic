@@ -5,6 +5,7 @@ import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/server"
 import { ArrowRight } from "lucide-react"
 import useAuth from "@/hooks/useAuth"
 import UserAccountNav from "./UserAccountNav"
+import MobileNav from "./MobileNav"
 
 const Navbar = () => {
   const user = useAuth()
@@ -16,6 +17,8 @@ const Navbar = () => {
           <Link href="/" className="flex z-40 font-semibold">
             <span>Magic Pdf</span>
           </Link>
+
+          <MobileNav isAuth={!!user} />
 
           <div className="hidden items-center space-x-4 sm:flex">
             {!user ? (
@@ -40,6 +43,7 @@ const Navbar = () => {
                 />
               </>
             )}
+            M
           </div>
         </div>
       </MaxWidthWrapper>
