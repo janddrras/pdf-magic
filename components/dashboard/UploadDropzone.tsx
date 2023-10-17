@@ -3,12 +3,8 @@ import Dropzone from "react-dropzone"
 import { Progress } from "../ui/progress"
 import useUploadHook from "@/hooks/useUploadHook"
 
-interface UploadDropzoneProps {}
-
-const UploadDropzone = ({}: UploadDropzoneProps) => {
-  const isSubscribed = false
-
-  const { isUploading, uploadProgress, dropAction } = useUploadHook()
+const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
+  const { isUploading, uploadProgress, dropAction } = useUploadHook({ isSubscribed })
 
   return (
     <Dropzone multiple={false} onDrop={dropAction}>

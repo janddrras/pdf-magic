@@ -8,13 +8,13 @@ import { useState } from "react"
 
 // interface useUploadHookProps {}
 
-const useUploadHook = () => {
+const useUploadHook = ({ isSubscribed }: { isSubscribed: boolean }) => {
   const [isUploading, setIsUploading] = useState<boolean>(false)
   const [uploadProgress, setUploadProgress] = useState<number>(0)
 
   const router = useRouter()
 
-  const { startUpload } = useUploadThing("freePlanUploader" as const) // Updated argument
+  const { startUpload } = useUploadThing(isSubscribed ? "proPlanUploader" : "freePlanUploader")
 
   const { toast } = useToast()
 

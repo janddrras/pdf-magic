@@ -6,9 +6,7 @@ import { DialogTrigger } from "@radix-ui/react-dialog"
 import { Button } from "../ui/button"
 import UploadDropzone from "./UploadDropzone"
 
-interface UploadButtonProps {}
-
-const UploadButton = ({}: UploadButtonProps) => {
+const UploadButton = ({ isSubscribed }: { isSubscribed: boolean }) => {
   const [open, setOpen] = useState<boolean>(false)
   return (
     <Dialog
@@ -22,7 +20,7 @@ const UploadButton = ({}: UploadButtonProps) => {
       </DialogTrigger>
 
       <DialogContent>
-        <UploadDropzone />
+        <UploadDropzone isSubscribed={isSubscribed} />
       </DialogContent>
     </Dialog>
   )
