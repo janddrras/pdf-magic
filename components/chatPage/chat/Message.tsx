@@ -1,4 +1,4 @@
-import { Icons } from "@/components/Icons"
+import { Icons } from "@/components/layout/Icons"
 import { cn } from "@/lib/utils"
 import { ExtendedMessage } from "@/types/message"
 import { format } from "date-fns"

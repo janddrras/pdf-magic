@@ -2,7 +2,7 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 import steps from "@/lib/steps.json"
-import MaxWidthWrapper from "@/components/MaxWidthWrapper"
+import MaxWidthWrapper from "@/components/layout/MaxWidthWrapper"
 import { buttonVariants } from "@/components/ui/button"
 import LandingImage from "@/components/landingPage/LandingImage"
 import Spot from "@/components/landingPage/Spot"

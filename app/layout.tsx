@@ -4,7 +4,7 @@ import "react-loading-skeleton/dist/skeleton.css"
 
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
-import Navbar from "@/components/landingPage/Navbar"
+import Navbar from "@/components/layout/Navbar"
 import Providers from "@/components/Providers"
 import { Toaster } from "@/components/ui/toaster"
 

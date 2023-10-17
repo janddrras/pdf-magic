@@ -1,4 +1,4 @@
-import MaxWidthWrapper from "@/components/MaxWidthWrapper"
+import MaxWidthWrapper from "@/components/layout/MaxWidthWrapper"
 import PricingItem from "@/components/pricing/PricingItem"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import useAuth from "@/hooks/useAuth"

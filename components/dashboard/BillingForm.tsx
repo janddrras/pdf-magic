@@ -1,7 +1,7 @@
 "use client"
 
 import { getUserSubscriptionPlan } from "@/lib/stripe"
-import MaxWidthWrapper from "../MaxWidthWrapper"
+import MaxWidthWrapper from "../layout/MaxWidthWrapper"
 import { format } from "date-fns"
 import { Loader2 } from "lucide-react"
 import { Button } from "../ui/button"
