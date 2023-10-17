@@ -3,7 +3,6 @@
 import { trpc } from "@/app/_trpc/client"
 import { useToast } from "@/components/ui/use-toast"
 import { useUploadThing } from "@/lib/uploadthing"
-import { tr } from "date-fns/locale"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 
@@ -15,7 +14,8 @@ const useUploadHook = () => {
 
   const router = useRouter()
 
-  const { startUpload } = useUploadThing("pdfUploader")
+  const { startUpload } = useUploadThing("freePlanUploader" as const) // Updated argument
+
   const { toast } = useToast()
 
   const { mutate: startPolling } = trpc.getFile.useMutation({
